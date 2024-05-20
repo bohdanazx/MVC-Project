@@ -1,0 +1,111 @@
+<!-- views/readingTasks/edit.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reading Task</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-container .form-group label {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .form-container .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ff69b4;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #ff1493;
+        }
+
+        /* Additional Styles */
+        .bottom-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .bottom-link a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .bottom-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <% include('../partials/header.ejs') %>
+        <div class="container">
+            <h2>Edit Reading Task</h2>
+            <div class="form-container">
+                <form action="/readingTasks/<%= task._id %>/edit" method="POST">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" value="<%= task.title %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" value="<%= task.author %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Genre:</label>
+                        <input type="text" id="genre" name="genre" value="<%= task.genre %>">
+                    </div>
+                    <button type="submit" class="button">Save Changes</button>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>

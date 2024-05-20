@@ -1,0 +1,48 @@
+<!-- views/readingTasks/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Tasks</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <% include('../partials/header.ejs') %>
+        <div class="container">
+            <h2>Reading Tasks</h2>
+
+            <% if (readingTasks.length===0) { %>
+                <p>No reading tasks available.</p>
+                <% } else { %>
+                    <ul class="book-list">
+                        <% readingTasks.forEach((task, index)=> { %>
+                            <li class="book-item">
+                                <h3>
+                                    <%= index + 1 %>. <%= task.title %> by <%= task.author %> (<%= task.genre %>)
+                                </h3>
+                                <% if (task.read) { %>
+                                    <p style="color: green;">(Read)</p>
+                                    <% } else { %>
+                                        <p style="color: red;">(Unread)</p>
+                                        <% } %>
+                                            <form action="/readingTasks/<%= task._id %>/complete" method="POST">
+                                                <button type="submit" class="button">Mark as Read</button>
+                                            </form>
+                                            <form action="/readingTasks/<%= task._id %>/delete" method="POST">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="button">Delete</button>
+                                            </form>
+                                            <a href="/readingTasks/<%= task._id %>/edit" class="button">Edit</a>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
+
+                        <a href="/readingTasks/new" class="button">Add New Task</a>
+        </div>
+</body>
+
+</html>
