@@ -20,8 +20,8 @@ exports.createReadingTask = async (req, res) => {
     });
 
     try {
-        const newReadingTask = await readingTask.save();
-        res.status(201).json(newReadingTask);
+        await readingTask.save();
+        res.redirect('/readingTasks');
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
